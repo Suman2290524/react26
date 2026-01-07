@@ -101,7 +101,7 @@ export default function LandingPage({ dark, onToggleTheme }) {
 
       {/* Features section */}
       <Container id="features" maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
-        <Typography variant="h4" textAlign="center" mb={4}>Why React26</Typography>
+        <Typography variant="h4" textAlign="center" mb={4}>Why Cognizant</Typography>
         <Grid container spacing={3}>
           {features.map((f) => (
             <Grid item xs={12} sm={6} md={4} key={f.title}>
