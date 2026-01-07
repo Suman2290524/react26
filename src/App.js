@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { useMemo, useState } from 'react';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { lightTheme, darkTheme } from './theme';
+import LandingPage from './pages/LandingPage';
+
+export default function App() {
+  const [dark, setDark] = useState(false);
+  const theme = useMemo(() => (dark ? darkTheme : lightTheme), [dark]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <LandingPage dark={dark} onToggleTheme={() => setDark(v => !v)} />
+    </ThemeProvider>
   );
 }
-
-export default App;
