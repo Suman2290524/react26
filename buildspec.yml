@@ -1,0 +1,31 @@
+# versioned build spec for AWS CodeBuild to build a CRA app
+version: 0.2
+
+env:
+  variables:
+    # CRA treats warnings as errors when CI=true in CI environments
+    # Set to "false" to avoid failing builds on warnings (optional)
+    CI: "false"
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo Installing dependencies...
+      - npm ci
+  build:
+    commands:
+      - echo Building the app...
+      - npm run build
+      # If you want to run tests, uncomment the line below
+      # - npm test -- --watchAll=false
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: build
+
+cache:
+  paths:
+    - node_modules/**/*
